@@ -1,6 +1,7 @@
 ﻿namespace Meep.Tech.XBam.Examples.ModelWithComponents {
 
   public partial class Device {
+
     /// <summary>
     /// Device base archetype
     /// </summary>

@@ -9,7 +9,7 @@
     /// You can use this syntax to modify the builder info for a component, while using a new builder factory if you want.
     /// </summary>
     static Capacitor() {
-      Components<Capacitor>.Factory = new Factory {
+      Components<Capacitor>.Factory = new Factory(Universe.Default) {
         // builder constructor is directly get/settable for factories as long as it's before archetype loading is done for this universe
         BuildrCtor
           = (type, @params, universe) => new IComponent<Capacitor>.Builder(type, @params, null, universe) {}

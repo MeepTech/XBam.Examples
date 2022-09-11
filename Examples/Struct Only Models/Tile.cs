@@ -10,13 +10,6 @@
     IModel.IUseDefaultUniverse
   {
 
-    /// <summary>
-    /// All tile types
-    /// </summary>
-    public static Type.Collection Types {
-      get;
-    } = new Type.Collection();
-
     public Type Archetype {
       get;
       private set;
@@ -35,7 +28,7 @@
 
       protected Type(
         XBam.Archetype.Identity id
-      ) : base(id, Types) {}
+      ) : base(id) {}
     }
   }
 }

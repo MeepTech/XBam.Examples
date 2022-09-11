@@ -2,11 +2,11 @@
   public partial struct Capacitor {
     public class Factory : IComponent<Capacitor>.Factory {
 
-      internal Factory() 
-        : base(new Identity("Capacitor Builder")) { }
+      internal Factory(Universe universe) 
+        : base(new Identity("Capacitor Builder"), universe) { }
 
-      protected override Capacitor ConfigureModel(IBuilder<Capacitor> builder, Capacitor model) {
-        model = base.ConfigureModel(builder, model);
+      protected override Capacitor OnModelInitialized(IBuilder<Capacitor> builder, Capacitor model) {
+        model = base.OnModelInitialized(builder, model);
         model.DefaultCapacityValue
           = builder.Get<int>(nameof(DefaultCapacityValue));
 

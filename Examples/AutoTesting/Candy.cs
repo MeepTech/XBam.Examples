@@ -96,6 +96,7 @@ namespace Meep.Tech.XBam.Examples.Examples.AutoTesting {
 	}
 
   public class Jellybean : Candy {
+
     [AutoBuild(IsRequiredAsAParameter = true)]
     [TestValue(true)]
     public bool IsShiny {
@@ -108,17 +109,9 @@ namespace Meep.Tech.XBam.Examples.Examples.AutoTesting {
 
   public class JellybeanType : Candy.Type {
 
-    protected override Func<IBuilder<Candy>, Candy> ModelConstructor {
-      get {
-        if (base.ModelConstructor is null) {
-          base.ModelConstructor =  _ => new Jellybean();
-        }
-
-        return base.ModelConstructor;
-      }
-    }
-
     JellybeanType() 
-      : base(new(nameof(Jellybean))) {}
+      : base(new(nameof(Jellybean))) {
+        ModelInitializer = _ => new Jellybean();
+      }
   }
 }

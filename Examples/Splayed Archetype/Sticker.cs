@@ -23,8 +23,8 @@ namespace Meep.Tech.XBam.Examples.SplayedArchetype {
       /// Used to make new Child Archetypes for Sticker.Type 
       /// </summary>
       /// <param name="id">The unique identity of the Child Archetype</param>
-      protected Type(Identity id)
-        : base(id) { }
+      protected Type(Identity id, Universe universe)
+        : base(id, universe) { }
 
       FruitType ISplayed<FruitType, Type>.AssociatedEnum {
         get => _enum as FruitType;
@@ -36,19 +36,21 @@ namespace Meep.Tech.XBam.Examples.SplayedArchetype {
         set => _enum = value;
       } Enumeration _enum;
 
-      Type ISplayed<FruitType, Type>.ConstructArchetypeFor(FruitType enumeration) {
+      Type ISplayed<FruitType, Type>.ConstructArchetypeFor(FruitType enumeration, Universe universe) {
         return new Type(
           new Identity(enumeration.ExternalId.ToString().Split('.').Last(),
-          keyOverride: enumeration.ExternalId.ToString())
+          keyOverride: enumeration.ExternalId.ToString()),
+          universe
         ) {
           _enum = enumeration
         };
       }
 
-      Type ISplayed<TreeType, Type>.ConstructArchetypeFor(TreeType enumeration) {
+      Type ISplayed<TreeType, Type>.ConstructArchetypeFor(TreeType enumeration, Universe universe) {
         return new Type(
           new Identity(enumeration.ExternalId.ToString().Split('.').Last(),
-          keyOverride: enumeration.ExternalId.ToString())
+          keyOverride: enumeration.ExternalId.ToString()),
+          universe
         ) {
           _enum = enumeration
         };

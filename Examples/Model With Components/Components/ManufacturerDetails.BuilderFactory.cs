@@ -11,11 +11,11 @@ namespace Meep.Tech.XBam.Examples.ModelWithComponents {
         get;
       } = new Identity("Capacitor Builder");
 
-      internal BuilderFactory() 
-        : base(Id) { }
+      internal BuilderFactory(Universe universe) 
+        : base(Id, universe) { }
 
-      protected override ManufacturerDetails ConfigureModel(IBuilder<ManufacturerDetails> builder, ManufacturerDetails model) {
-        model = base.ConfigureModel(builder, model);
+      protected override ManufacturerDetails OnModelInitialized(IBuilder<ManufacturerDetails> builder, ManufacturerDetails model) {
+        model = base.OnModelInitialized(builder, model);
         model.ManufacturerName = builder.Get<string>(nameof(ManufacturerName));
         model.ManufactureDate = builder.Get(nameof(ManufactureDate), DateTime.Now);
         model.QuantityProduced = builder.Get<int>(nameof(QuantityProduced));

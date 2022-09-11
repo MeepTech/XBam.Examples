@@ -20,11 +20,11 @@ namespace Meep.Tech.XBam.Examples.ModelWithComponents {
           Components<Capacitor>.Factory.Make()
         );
 
-      protected override Func<IBuilder<Device>, Device> ModelConstructor
+      protected override Func<IBuilder, IModel> ModelConstructor
         => builder => new FluxCapacitor();
 
-      protected override Device ConfigureModel(IBuilder<Device> builder, Device model) {
-        model = base.ConfigureModel(builder, model);
+      protected override Device OnModelInitialized(IBuilder<Device> builder, Device model) {
+        model = base.OnModelInitialized(builder, model);
 
         (model as FluxCapacitor).FluxLevel 
           = builder.GetRequired<int>(nameof(FluxCapacitor.FluxLevel));

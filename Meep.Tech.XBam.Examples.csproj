@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\XBam\Meep.Tech.Xbam.csproj" />
+    <ProjectReference Include="..\_\Meep.Tech.Xbam.csproj" />
   </ItemGroup>
 
 </Project>

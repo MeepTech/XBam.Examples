@@ -46,11 +46,11 @@ namespace Meep.Tech.XBam.Examples.ModelWithArchetypes {
         DefaultDamagePerHit = defaultDamagePerHit;
       }
 
-      protected override Func<IBuilder<Item>, Item> ModelConstructor
+      protected override Func<IBuilder, IModel> ModelConstructor
         => builder => new Weapon();
 
-      protected override Item ConfigureModel(IBuilder<Item> builder, Item model) {
-        model = base.ConfigureModel(builder, model);
+      protected override Item OnModelInitialized(IBuilder<Item> builder, Item? model) {
+        model = base.OnModelInitialized(builder, model);
         (model as Weapon)!.DamagePerHit = builder.Get(Param.DamagerPerHit, DefaultDamagePerHit);
         return model;
       }

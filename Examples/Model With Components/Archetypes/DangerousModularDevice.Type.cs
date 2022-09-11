@@ -6,7 +6,7 @@ namespace Meep.Tech.XBam.Examples.ModelWithComponents {
 
     public new class Type : Device.Type {
 
-      protected override Func<IBuilder<Device>, Device> ModelConstructor
+      protected override Func<IBuilder, IModel> ModelConstructor
         => builder => new DangerousModularDevice();
 
       protected Type()

@@ -15,12 +15,14 @@ namespace Meep.Tech.XBam.Examples.SimpleModelsWithOneFactory {
     static Character() {
       Models<Character>.Factory = new(
         new(nameof(Character) + ".Test"),
-        null,
+        Universe.Default,
         new() {
           Components<TestArchetypeData>.Factory.Make()
         },
         new Func<IBuilder, IModel.IComponent>[] {
-          builder => Components<TestModelData>.Factory.Make()
+          builder => { 
+            return Components<TestModelData>.Factory.Make(); 
+          }
         }
       ) {};
     }

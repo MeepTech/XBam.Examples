@@ -3,16 +3,17 @@
 namespace Meep.Tech.XBam.Examples.ModelWithComponents {
   public partial struct ManufacturerDetails
     : IModel.IComponent<ManufacturerDetails>,
-      IModel.IComponent.IIsRestrictedTo<Device>,
+      IModel.IComponent.IAmRestrictedTo<Device>,
       IComponent.IUseDefaultUniverse
   {
 
-    static void Setup(Universe universe) 
+    [Configuration.OnInitializingInLoader]
+    static void _setup(Universe universe) 
       => universe
         .Components
           .SetFactory
             <ManufacturerDetails>
-              (new BuilderFactory());
+              (new BuilderFactory(universe));
 
     public string ManufacturerName {
       get;

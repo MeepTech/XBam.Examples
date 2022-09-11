@@ -31,7 +31,7 @@ namespace Meep.Tech.XBam.Examples.ModelWithArchetypes {
           : base(name, $"Potion.") { }
       }
 
-      protected override Func<IBuilder<Item>, Item> ModelConstructor
+      protected override Func<IBuilder, IModel> ModelConstructor
         => builder => new Potion();
 
       protected override Func<Archetype, IEnumerable<KeyValuePair<string, object>>, Universe, IBuilder<Item>> BuilderConstructor
@@ -60,9 +60,9 @@ namespace Meep.Tech.XBam.Examples.ModelWithArchetypes {
           return baseBuilder;
         };
 
-      protected override Item ConfigureModel(IBuilder<Item> builder, Item model) {
+      protected override Item OnModelInitialized(IBuilder<Item> builder, Item? model) {
         // you can invoke the bases in these too:
-        base.ConfigureModel(builder, model);
+        base.OnModelInitialized(builder, model);
 
         // set the new value and return:
         (model as Potion)!.RemainingUses
